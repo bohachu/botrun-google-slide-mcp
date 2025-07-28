@@ -59,7 +59,8 @@ temp/
 !.yarn/versions
 
 # Shell scripts with potential sensitive data
-sh/
+sh/claude.sh
+sh/gemini.sh
 
 # MCP configuration files that may contain paths
 .mcp.json
