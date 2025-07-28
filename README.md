@@ -1,24 +1,63 @@
 # Google Slides MCP Server
 
-## Acknowledgments
-
-This project is based on the original work by Matteo Antoci: [google-slides-mcp](https://github.com/matteoantoci/google-slides-mcp). The original project is licensed under GPL-3.0, and this modified version maintains the same license. We are grateful to Matteo Antoci and all contributors to the original project for creating this foundation.
-
-### Major Changes from Original:
-- **Authentication Method**: Changed from OAuth 2.0 with refresh tokens to Service Account authentication for improved security and easier deployment
-- **New Features**: Added `move_presentation` tool for moving/copying presentations to Google Drive folders
-- **Enhanced Security**: Using service account key file stored locally instead of environment variables for credentials
-- **Drive API Integration**: Added Google Drive API scopes to support file management operations
-
 ## Description
 
 This project provides a Model Context Protocol (MCP) server for interacting with the Google Slides API. It allows you to create, read, modify, and manage Google Slides presentations programmatically through a secure service account authentication method.
 
-## Installation
+## Quick Start for Gemini CLI (Primary Method)
 
-### Quick Start with npx (Recommended)
+### 1. Install and Configure Gemini CLI with MCP
 
-You can run this MCP server directly using npx without installing it globally:
+Set up your Gemini API key:
+```bash
+export GOOGLE_API_KEY="YOUR_API_KEY"
+```
+
+Edit `~/.gemini/settings.json` to add the Google Slides MCP server:
+```json
+{
+  "mcpServers": {
+    "google-slides-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@bohachu/google-slides-mcp"
+      ]
+    }
+  }
+}
+```
+
+### 2. Set up Google Service Account Authentication
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google Slides API:
+   - Navigate to "APIs & Services" > "Enabled APIs & services"
+   - Click "+ ENABLE APIS AND SERVICES"
+   - Search for "Google Slides API" and enable it
+4. Create Service Account credentials:
+   - Navigate to "APIs & Services" > "Credentials"
+   - Click "+ CREATE CREDENTIALS" > "Service account"
+   - Fill in the service account details
+   - Click "Create" and "Done"
+5. Download the service account key:
+   - Click on your newly created service account
+   - Go to the "Keys" tab
+   - Click "Add Key" > "Create new key"
+   - Choose "JSON" as the key type
+   - Click "Create" to download the JSON file
+6. **Important:** Rename the downloaded file to `google_service_account_key.json` and place it in a `keys` directory in your current working directory
+
+### 3. Use with Gemini CLI
+
+Once configured, you can use the Google Slides tools directly in Gemini CLI. The MCP server will be automatically loaded when you start Gemini.
+
+## Other Installation Methods
+
+### Quick Start with npx (Standalone)
+
+You can run this MCP server directly using npx:
 
 ```bash
 npx -y @bohachu/google-slides-mcp
@@ -104,9 +143,19 @@ npm run build
         *   Share the presentations with the service account email (found in the JSON key file as `client_email`)
         *   Grant at least "Editor" permissions for full functionality
 
-## MCP Configuration for Different Tools
+## Acknowledgments
 
-This MCP server can be used with various AI tools that support the Model Context Protocol. Below are detailed configuration instructions for each tool:
+This project is based on the original work by Matteo Antoci: [google-slides-mcp](https://github.com/matteoantoci/google-slides-mcp). The original project is licensed under GPL-3.0, and this modified version maintains the same license. We are grateful to Matteo Antoci and all contributors to the original project for creating this foundation.
+
+### Major Changes from Original:
+- **Authentication Method**: Changed from OAuth 2.0 with refresh tokens to Service Account authentication for improved security and easier deployment
+- **New Features**: Added `move_presentation` tool for moving/copying presentations to Google Drive folders
+- **Enhanced Security**: Using service account key file stored locally instead of environment variables for credentials
+- **Drive API Integration**: Added Google Drive API scopes to support file management operations
+
+## MCP Configuration for Other Tools
+
+This MCP server can also be used with other AI tools that support the Model Context Protocol:
 
 ### Claude Desktop
 
@@ -210,31 +259,6 @@ Configuration format with npx:
 ```
 
 5. Refresh and ensure the server indicator turns green
-
-### Gemini CLI
-
-**Configuration file:** `~/.gemini/settings.json`
-
-**Setup steps:**
-1. First, set up your Gemini API key:
-   ```bash
-   export GOOGLE_API_KEY="YOUR_API_KEY"
-   ```
-
-2. Edit `~/.gemini/settings.json`:
-   ```json
-   {
-     "mcpServers": {
-       "google-slides-mcp": {
-         "command": "npx",
-         "args": [
-           "-y",
-           "@bohachu/google-slides-mcp"
-         ]
-       }
-     }
-   }
-   ```
 
 ### Important Notes for All Tools:
 - When using npx, the server will automatically be downloaded and run - no local installation needed
