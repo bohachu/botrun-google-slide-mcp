@@ -1,0 +1,62 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Configuration files
+.prettierrc
+eslint.config.js
+tsconfig.json
+.gitignore
+.npmignore
+
+# Git
+.git/
+.github/
+
+# Keys and sensitive data
+keys/
+*.json
+!package.json
+!package-lock.json
+
+# Development files
+.env*
+.gemini
+sh/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test files
+test-*.js
+test-*.ts
+*.test.*
+*.spec.*
+
+# MCP config files
+.mcp.json
+claude_desktop_config.json
+.cursor/
+settings.json
+
+# Documentation source
+docs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
