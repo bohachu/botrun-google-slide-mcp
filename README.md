@@ -6,9 +6,75 @@ This project provides a Model Context Protocol (MCP) server for interacting with
 
 ## Quick Start for Gemini CLI (Primary Method)
 
-### 1. Install and Configure Gemini CLI with MCP
+### Complete Setup Instructions
 
-Set up your Gemini API key:
+Follow these step-by-step instructions to set up the Google Slides MCP server with Gemini CLI:
+
+1. **Create working directory**
+   ```bash
+   mkdir ~/coding_projects/working
+   ```
+
+2. **Navigate to working directory**
+   ```bash
+   cd ~/coding_projects/working
+   ```
+
+3. **Create keys directory for Google service account**
+   ```bash
+   mkdir -p ~/coding_projects/working/keys
+   ```
+
+4. **Copy your Google service account key**
+   - Drag and drop your `google_service_account_key.json` file to the directory: `~/coding_projects/working/keys`
+   - Make sure the file is named exactly `google_service_account_key.json`
+
+5. **Create .env file with Gemini API key**
+   ```bash
+   vi ~/coding_projects/working/.env
+   ```
+   - Press `i` to enter insert mode
+   - Type: `GEMINI_API_KEY=your_actual_api_key_here`
+   - Press `ESC`, then type `:wq` and press `Enter` to save and exit
+
+6. **Create MCP configuration directory**
+   ```bash
+   mkdir -p ~/coding_projects/working/.gemini
+   ```
+
+7. **Configure MCP settings**
+   ```bash
+   vi ~/coding_projects/working/.gemini/settings.json
+   ```
+   - Press `i` to enter insert mode
+   - Insert the following content:
+   ```json
+   {
+     "mcpServers": {
+       "google-slides-mcp": {
+         "command": "google-slides-mcp"
+       }
+     }
+   }
+   ```
+   - Press `ESC`, then type `:wq` and press `Enter` to save and exit
+
+8. **Install the Google Slides MCP server globally**
+   ```bash
+   npm install -g @bohachu/google-slides-mcp
+   ```
+   This installs the MCP server globally so it can be executed from any path.
+
+9. **Verify installation**
+   ```bash
+   gemini -y
+   ```
+   You should now see that the Google Slides MCP server environment is installed and ready to use.
+
+### Quick Setup (After Initial Installation)
+
+Once you've completed the initial setup, for subsequent use you only need:
+
 ```bash
 export GOOGLE_API_KEY="YOUR_API_KEY"
 ```
