@@ -13,20 +13,23 @@ Set up your Gemini API key:
 export GOOGLE_API_KEY="YOUR_API_KEY"
 ```
 
-Edit `~/.gemini/settings.json` to add the Google Slides MCP server:
+Install the MCP server globally:
+```bash
+npm install -g @bohachu/google-slides-mcp
+```
+
+Then edit `~/.gemini/settings.json` to add the Google Slides MCP server:
 ```json
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@bohachu/google-slides-mcp"
-      ]
+      "command": "google-slides-mcp"
     }
   }
 }
 ```
+
+Note: The service account key file must be present at `keys/google_service_account_key.json` relative to your working directory when using Gemini CLI.
 
 ### 2. Set up Google Service Account Authentication
 
@@ -54,25 +57,6 @@ Edit `~/.gemini/settings.json` to add the Google Slides MCP server:
 Once configured, you can use the Google Slides tools directly in Gemini CLI. The MCP server will be automatically loaded when you start Gemini.
 
 ## Other Installation Methods
-
-### Quick Start with npx (Standalone)
-
-You can run this MCP server directly using npx:
-
-```bash
-npx -y @bohachu/google-slides-mcp
-```
-
-### Install as npm package
-
-```bash
-npm install -g @bohachu/google-slides-mcp
-```
-
-After global installation, you can run:
-```bash
-google-slides-mcp
-```
 
 ### Build from Source
 
@@ -163,34 +147,18 @@ This MCP server can also be used with other AI tools that support the Model Cont
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-**Configuration using npx (Recommended):**
+**Configuration (after global installation):**
 ```json
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@bohachu/google-slides-mcp"
-      ]
+      "command": "google-slides-mcp"
     }
   }
 }
 ```
 
-**Configuration for local installation:**
-```json
-{
-  "mcpServers": {
-    "google-slides-mcp": {
-      "command": "node",
-      "args": [
-        "/path/to/google-slides-mcp/build/index.js"
-      ]
-    }
-  }
-}
-```
+**Note:** First install globally with `npm install -g @bohachu/google-slides-mcp`
 
 After editing the configuration:
 1. Completely quit Claude Desktop
@@ -199,35 +167,28 @@ After editing the configuration:
 
 ### Claude Code
 
-**Method 1: Using CLI with npx (Recommended)**
+**Using CLI (after global installation):**
 ```bash
-# Add the server using npx
-claude mcp add google-slides npx -y @bohachu/google-slides-mcp
+# First install globally
+npm install -g @bohachu/google-slides-mcp
 
-# For project-specific configuration
-claude mcp add google-slides -s project npx -y @bohachu/google-slides-mcp
-```
-
-**Method 2: Using CLI with local installation**
-```bash
 # Add the server
-claude mcp add google-slides /path/to/google-slides-mcp/build/index.js
+claude mcp add google-slides google-slides-mcp
 
 # For project-specific configuration
-claude mcp add google-slides -s project /path/to/google-slides-mcp/build/index.js
+claude mcp add google-slides -s project google-slides-mcp
 ```
 
-**Method 3: Direct configuration file**
+**Direct configuration file:**
 - **User config**: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 - **Project config**: `{project}/.mcp.json`
 
-Configuration format with npx:
+Configuration format:
 ```json
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "npx",
-      "args": ["-y", "@bohachu/google-slides-mcp"]
+      "command": "google-slides-mcp"
     }
   }
 }
@@ -239,30 +200,26 @@ Configuration format with npx:
 - **Project-specific**: `{project}/.cursor/mcp.json`
 
 **Setup steps:**
-1. Open Settings (`Ctrl+Shift+J` or `Cmd+Shift+J`)
-2. Navigate to Features → Model Context Protocol
-3. Click "Add" to add a new server
-4. Create or edit `.cursor/mcp.json`:
+1. First install globally: `npm install -g @bohachu/google-slides-mcp`
+2. Open Settings (`Ctrl+Shift+J` or `Cmd+Shift+J`)
+3. Navigate to Features → Model Context Protocol
+4. Click "Add" to add a new server
+5. Create or edit `.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@bohachu/google-slides-mcp"
-      ]
+      "command": "google-slides-mcp"
     }
   }
 }
 ```
 
-5. Refresh and ensure the server indicator turns green
+6. Refresh and ensure the server indicator turns green
 
 ### Important Notes for All Tools:
-- When using npx, the server will automatically be downloaded and run - no local installation needed
-- For local installations, replace `/path/to/google-slides-mcp/build/index.js` with the absolute path to your compiled server file
+- First install the server globally: `npm install -g @bohachu/google-slides-mcp`
 - The service account key must be present at `keys/google_service_account_key.json` relative to the current working directory
 - No environment variables are needed as the server loads credentials from the key file
 - After configuration changes, restart the respective tool for changes to take effect
