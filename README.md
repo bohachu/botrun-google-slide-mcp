@@ -14,6 +14,43 @@ This project is based on the original work by Matteo Antoci: [google-slides-mcp]
 
 This project provides a Model Context Protocol (MCP) server for interacting with the Google Slides API. It allows you to create, read, modify, and manage Google Slides presentations programmatically through a secure service account authentication method.
 
+## Installation
+
+### Quick Start with npx (Recommended)
+
+You can run this MCP server directly using npx without installing it globally:
+
+```bash
+npx -y @bohachu/google-slides-mcp
+```
+
+### Install as npm package
+
+```bash
+npm install -g @bohachu/google-slides-mcp
+```
+
+After global installation, you can run:
+```bash
+google-slides-mcp
+```
+
+### Build from Source
+
+If you want to build from source or contribute to the project:
+
+```bash
+# Clone the repository
+git clone https://github.com/bohachu/botrun-google-slide-mcp.git
+cd botrun-google-slide-mcp
+
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+```
+
 ## Prerequisites
 
 *   Node.js (v18 or later recommended)
@@ -77,7 +114,22 @@ This MCP server can be used with various AI tools that support the Model Context
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-**Configuration:**
+**Configuration using npx (Recommended):**
+```json
+{
+  "mcpServers": {
+    "google-slides-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@bohachu/google-slides-mcp"
+      ]
+    }
+  }
+}
+```
+
+**Configuration for local installation:**
 ```json
 {
   "mcpServers": {
@@ -98,7 +150,16 @@ After editing the configuration:
 
 ### Claude Code
 
-**Method 1: Using CLI (Recommended for simple setup)**
+**Method 1: Using CLI with npx (Recommended)**
+```bash
+# Add the server using npx
+claude mcp add google-slides npx -y @bohachu/google-slides-mcp
+
+# For project-specific configuration
+claude mcp add google-slides -s project npx -y @bohachu/google-slides-mcp
+```
+
+**Method 2: Using CLI with local installation**
 ```bash
 # Add the server
 claude mcp add google-slides /path/to/google-slides-mcp/build/index.js
@@ -107,17 +168,17 @@ claude mcp add google-slides /path/to/google-slides-mcp/build/index.js
 claude mcp add google-slides -s project /path/to/google-slides-mcp/build/index.js
 ```
 
-**Method 2: Direct configuration file**
+**Method 3: Direct configuration file**
 - **User config**: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 - **Project config**: `{project}/.mcp.json`
 
-Configuration format:
+Configuration format with npx:
 ```json
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "node",
-      "args": ["/path/to/google-slides-mcp/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@bohachu/google-slides-mcp"]
     }
   }
 }
@@ -138,9 +199,10 @@ Configuration format:
 {
   "mcpServers": {
     "google-slides-mcp": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/path/to/google-slides-mcp/build/index.js"
+        "-y",
+        "@bohachu/google-slides-mcp"
       ]
     }
   }
@@ -164,9 +226,10 @@ Configuration format:
    {
      "mcpServers": {
        "google-slides-mcp": {
-         "command": "node",
+         "command": "npx",
          "args": [
-           "/path/to/google-slides-mcp/build/index.js"
+           "-y",
+           "@bohachu/google-slides-mcp"
          ]
        }
      }
@@ -174,8 +237,9 @@ Configuration format:
    ```
 
 ### Important Notes for All Tools:
-- Replace `/path/to/google-slides-mcp/build/index.js` with the absolute path to your compiled server file
-- The service account key must be present at `keys/google_service_account_key.json` relative to the project root
+- When using npx, the server will automatically be downloaded and run - no local installation needed
+- For local installations, replace `/path/to/google-slides-mcp/build/index.js` with the absolute path to your compiled server file
+- The service account key must be present at `keys/google_service_account_key.json` relative to the current working directory
 - No environment variables are needed as the server loads credentials from the key file
 - After configuration changes, restart the respective tool for changes to take effect
 - For Windows users, use forward slashes in paths or escape backslashes (e.g., `C:/path/to/file` or `C:\\path\\to\\file`)
@@ -262,7 +326,7 @@ The server exposes the following tools via the Model Context Protocol:
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 Original work Copyright (C) 2025 Matteo Antoci  
-Modifications Copyright (C) 2025 [Your Name]
+Modifications Copyright (C) 2025 Bowen Chiu
 
 ## Contributing
 
