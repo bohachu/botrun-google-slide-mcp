@@ -60,10 +60,12 @@ Follow these step-by-step instructions to set up the Google Slides MCP server wi
    - Press `ESC`, then type `:wq` and press `Enter` to save and exit
 
 8. **Install the Google Slides MCP server globally**
+   
+   Remember to execute this command in your terminal first:
    ```bash
    npm install -g @bohachu/google-slides-mcp
    ```
-   This installs the MCP server globally so it can be executed from any path.
+   This installs the remote MCP server to your local machine globally, making it executable from any path.
 
 9. **Verify installation**
    ```bash
