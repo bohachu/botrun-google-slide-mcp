@@ -1,6 +1,6 @@
 {
   "name": "@bohachu/google-slides-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP server for Google Slides integration with service account authentication",
   "type": "module",
   "main": "build/index.js",
