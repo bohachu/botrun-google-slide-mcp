@@ -1,0 +1,77 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.gemini
+
+# Credentials and keys - IMPORTANT: Never commit these!
+keys/
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!eslint.config.js
+google_service_account_key.json
+firebase_service_account_key.json
+youtube_googe_service_account_key.json
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Package manager files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Shell scripts with potential sensitive data
+sh/
+
+# MCP configuration files that may contain paths
+.mcp.json
+claude_desktop_config.json
+.cursor/mcp.json
+settings.json
+
+# Any backup files
+*.bak
+*.backup
+*~
+
+# Test files that might contain sensitive data
+test-*.js
+test-*.ts
