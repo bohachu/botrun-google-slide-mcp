@@ -5,7 +5,7 @@
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "google-slides-mcp": "./build/index.js"
+    "google-slides-mcp": "build/index.js"
   },
   "files": [
     "build",
