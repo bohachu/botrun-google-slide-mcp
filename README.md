@@ -41,8 +41,8 @@ If you want to build from source or contribute to the project:
 
 ```bash
 # Clone the repository
-git clone https://github.com/bohachu/botrun-google-slide-mcp.git
-cd botrun-google-slide-mcp
+git clone https://github.com/bohachu/botrun-google-slides-mcp.git
+cd botrun-google-slides-mcp
 
 # Install dependencies
 npm install

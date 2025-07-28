@@ -32,12 +32,12 @@
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bohachu/botrun-google-slide-mcp.git"
+    "url": "git+https://github.com/bohachu/botrun-google-slides-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/bohachu/botrun-google-slide-mcp/issues"
+    "url": "https://github.com/bohachu/botrun-google-slides-mcp/issues"
   },
-  "homepage": "https://github.com/bohachu/botrun-google-slide-mcp#readme",
+  "homepage": "https://github.com/bohachu/botrun-google-slides-mcp#readme",
   "publishConfig": {
     "access": "public"
   },
