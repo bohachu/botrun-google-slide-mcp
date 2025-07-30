@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bohachu-botrun-google-slides-mcp-badge.png)](https://mseep.ai/app/bohachu-botrun-google-slides-mcp)
+
 # Google Slides MCP Server
 
 ## Description
